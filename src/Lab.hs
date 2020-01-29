@@ -18,8 +18,9 @@ import Prelude hiding ( elem, maximum, intersperse, transpose
 -- Recursive and higher-order functions
 
 elem :: Eq a => a -> [a] -> Bool
-
+elem p [] = False
 elem p (x:xs) = not (null (filter (== p) (x:xs)))
+
 
 maximum :: Ord a => [a] -> a
 maximum = undefined
