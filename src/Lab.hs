@@ -42,10 +42,15 @@ takeWhile :: (a -> Bool) -> [a] -> [a]
 takeWhile f (x:xs) = if not (f x) then [] else x : takeWhile f xs
 
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
-zipWith = undefined
+zipWith f [] x = []
+zipWith f x [] = []
+zipWith f (x:xs) (y:ys) = f x y : zipWith f xs ys
 
 groupBy :: (a -> a -> Bool) -> [a] -> [[a]]
-groupBy = undefined
+groupBy f [] = [[]]
+groupBy f [x,y] = if f x y then [[x,y]] else [[x],[y]]
+groupBy f (x:y:xs) = x : if f x y then groupBy f (y:xs) else
+  [] ++ groupBy f (y:xs)
 
 permutations :: Eq a => [a] -> [[a]]
 permutations = undefined
