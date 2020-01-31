@@ -47,12 +47,11 @@ zipWith f x [] = []
 zipWith f (x:xs) (y:ys) = f x y : zipWith f xs ys
 
 groupBy :: (a -> a -> Bool) -> [a] -> [[a]]
-groupBy f [] = [[]]
-groupBy f [x,y] = if f x y then [[x,y]] else [[x],[y]]
-groupBy f (x:y:xs) = x : if f x y then groupBy f (y:xs) else
-  [] ++ groupBy f (y:xs)
+groupBy f [] = undefined
 
 permutations :: Eq a => [a] -> [[a]]
-permutations = undefined
+permutations [] = [[]]
+permutations (x:xs) = [ take n ys | n <- [1..(length (x:xs))],
+                      ys <- permutations xs]
 
 --------------------------------------------------------------------------------
